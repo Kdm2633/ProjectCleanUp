@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.cjs",
+  "type": "module",
+  "scripts": {
+    "test": "start",
+    "start": "nodemon -r esm index.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ProjectCleanUp"
+  },
+  "author": "Grace Cai",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.20"
+  }
+}
