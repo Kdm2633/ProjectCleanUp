@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import axios from "axios";
 
-const SignUp = (navigation) => {
+const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,11 +20,16 @@ const SignUp = (navigation) => {
       alert("All fields are required");
       return;
     }
-    const resp = await axios.post("http://localhost:8001/api/signup", {
-      name,
-      email,
-      password,
-    });
+    const resp = await axios
+      .post("http://localhost:8000/signup", {
+        name,
+        email,
+        password,
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(resp);
+      });
     if (resp.data.error) {
       alert(resp.data.error);
     } else {
@@ -39,7 +44,9 @@ const SignUp = (navigation) => {
         <TextInput
           style={styles.signupInput}
           value={name}
-          onChange={(text) => setName(text)}
+          onChangeText={(text) => {
+            setName(text);
+          }}
           autoCapitalize="words"
           autoCorrect={false}
         />
@@ -47,7 +54,7 @@ const SignUp = (navigation) => {
         <TextInput
           style={styles.signupInput}
           value={email}
-          onChange={(text) => setEmail(text)}
+          onChangeText={(text) => setEmail(text)}
           autoComplete="email"
           keyboardType="email-address"
           autoCapitalize={false}
@@ -56,7 +63,7 @@ const SignUp = (navigation) => {
         <TextInput
           style={styles.signupInput}
           value={password}
-          onChange={(text) => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}
           autoCompleteType="password"
         />
